@@ -1,6 +1,14 @@
-from bs4 import BeautifulSoup as Soup
-import requests as rq
 import random as rd
+import time as t
+
+import requests as rq
+from bs4 import BeautifulSoup as Soup
+
+
+def clear():
+    for _ in range(1000):
+        print()
+
 
 print("Initialising...")
 
@@ -15,14 +23,49 @@ page = rq.get("https://list.fandom.com/wiki/List_of_common_animals")
 soup = Soup(page.text, "html.parser")
 animals = [e.getText().title().replace(" ", "") for e in soup.select("td > ul > li > a")]
 
+# globals
+names = []
+
+
 def rand_name():
-    return adjectives[rd.randint(0, len(adjectives) - 1)] + animals[rd.randint(0, len(animals) - 1)]
+    name = adjectives[rd.randint(0, len(adjectives) - 1)] + animals[rd.randint(0, len(animals) - 1)]
+    while name in names:
+        name = adjectives[rd.randint(0, len(adjectives) - 1)] + animals[rd.randint(0, len(animals) - 1)]
+    names.append(name)
+    return name
+
+
+def nth(number):
+    if str(number)[-1] == "1":
+        return f"{number}st"
+    elif str(number)[-1] == "2":
+        return f"{number}nd"
+    elif str(number)[-1] == "3":
+        return f"{number}rd"
+    else:
+        return f"{number}th"
 
 
 # lobby start
-print("\n\n\n\nWelcome to the Kahoot Lobby\n")
-nPlayers = int(input("Number of Players: "))
-print()
+clear()
+print("Welcome to the Kahoot Lobby\n")
+nPlayers = 0
+while nPlayers < 5:
+    nPlayers = int(input("Number of Players (at least 5): "))
+clear()
 
 for i in range(1, nPlayers + 1):
     print(f"Player {i}: {rand_name()}")
+
+t.sleep(2)
+
+finalists = []
+for i in range(5):
+    finalists.append(names.pop(rd.randint(0, len(names) - 1)))
+
+clear()
+for i, n in zip(range(len(finalists), 0, -1), finalists):
+    t.sleep(1)
+    print(f"in {nth(i)} place: ", end="")
+    t.sleep(2)
+    print(n)
