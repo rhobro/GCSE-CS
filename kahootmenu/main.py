@@ -66,6 +66,9 @@ print("Welcome to the Kahoot Lobby\n")
 nPlayers = 0
 while nPlayers < 5:
     nPlayers = int(input("Number of Players (at least 5): "))
+nQuestions = 0
+while nQuestions < 1:
+    nQuestions = int(input("Number of Questions (at least 1): "))
 clear()
 
 for i in range(1, nPlayers + 1):
@@ -74,14 +77,17 @@ for i in range(1, nPlayers + 1):
 t.sleep(2)
 
 finalists = []
-for i in range(5):
+for _ in range(5):
     finalists.append(names.pop(rd.randint(0, len(names) - 1)))
+final_scores = [0]
+for i in range(5):
+    final_scores.insert(0, rd.randint(final_scores[0], 200 * (i + 1) * nQuestions))
 
 clear()
 for i, n in zip(range(len(finalists), 0, -1), finalists):
     t.sleep(1)
     print(f"in {nth(i)} place: ", end="")
     t.sleep(2)
-    print(n)
+    print(f"{n} | Score: {final_scores[i - 1]}")
 
 input("\n\nPress enter to quit: ")
