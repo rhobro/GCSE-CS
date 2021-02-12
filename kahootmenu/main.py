@@ -1,8 +1,10 @@
 import random as rd
+import tempfile as tmpf
 import time as t
 
 import requests as rq
 from bs4 import BeautifulSoup as Soup
+from pygame import mixer
 
 
 def clear():
@@ -19,9 +21,21 @@ soup = Soup(page.text, "html.parser")
 adjectives = [e.getText().title() for e in soup.select("td")]
 
 # scrape animals
+print("Scraping vocabulary sources")
 page = rq.get("https://list.fandom.com/wiki/List_of_common_animals")
 soup = Soup(page.text, "html.parser")
 animals = [e.getText().title().replace(" ", "") for e in soup.select("td > ul > li > a")]
+
+# download, save and play music
+print("Downloading kahoot theme song")
+rsp = rq.get("https://www.privfile.com/download.php?fid=6026499a7309d-NTkzMg==")
+fpath = f"{tmpf.gettempdir()}/kahoot.mp3"
+with open(fpath, "wb") as f:
+    f.write(rsp.content)
+
+mixer.init()
+mixer.music.load(fpath)
+mixer.music.play()
 
 # globals
 names = []
@@ -69,3 +83,5 @@ for i, n in zip(range(len(finalists), 0, -1), finalists):
     print(f"in {nth(i)} place: ", end="")
     t.sleep(2)
     print(n)
+
+input("\n\nPress enter to quit: ")
