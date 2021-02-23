@@ -1,3 +1,4 @@
+import json
 import random as rd
 import tempfile as tmpf
 import time as t
@@ -20,11 +21,26 @@ page = rq.get("https://grammar.yourdictionary.com/parts-of-speech/adjectives/lis
 soup = Soup(page.text, "html.parser")
 adjectives = [e.getText().title() for e in soup.select("td")]
 
+
 # scrape animals
-print("Scraping vocabulary sources")
-page = rq.get("https://list.fandom.com/wiki/List_of_common_animals")
-soup = Soup(page.text, "html.parser")
-animals = [e.getText().title().replace(" ", "") for e in soup.select("td > ul > li > a")]
+# print("Scraping vocabulary sources")
+# page = rq.get("https://list.fandom.com/wiki/List_of_common_animals")
+# soup = Soup(page.text, "html.parser")
+# animals = [e.getText().title().replace(" ", "") for e in soup.select("td > ul > li > a")]
+#
+# def rand_name():
+#     name = adjectives[rd.randint(0, len(adjectives) - 1)] + animals[rd.randint(0, len(animals) - 1)]
+#     while name in names:
+#         name = adjectives[rd.randint(0, len(adjectives) - 1)] + animals[rd.randint(0, len(animals) - 1)]
+#     names.append(name)
+#     return name
+
+# use kahoot api instead
+def rand_name():
+    name = rq.get("https://apis.kahoot.it/namerator")
+    name = json.loads(name.content)
+    return name["name"]
+
 
 # download, save and play music
 print("Downloading kahoot theme song")
@@ -39,14 +55,6 @@ mixer.music.play()
 
 # globals
 names = []
-
-
-def rand_name():
-    name = adjectives[rd.randint(0, len(adjectives) - 1)] + animals[rd.randint(0, len(animals) - 1)]
-    while name in names:
-        name = adjectives[rd.randint(0, len(adjectives) - 1)] + animals[rd.randint(0, len(animals) - 1)]
-    names.append(name)
-    return name
 
 
 def nth(number):
