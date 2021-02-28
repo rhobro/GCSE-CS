@@ -1,14 +1,30 @@
 import math as mt
 import random as rand
 
-import requests as rq
-from bs4 import BeautifulSoup as Soup
+# import requests as rq
+# from bs4 import BeautifulSoup as Soup
 
 # scrape club list from premier league website
-clubs = rq.get("https://www.premierleague.com/clubs", verify=False)
-clubs = Soup(clubs.content, "html.parser")
-clubs = [e.text for e in clubs.select("div.indexSection > div > ul > li > a > div.indexInfo > div.nameContainer > h4")]
-clubs = clubs[:2 ** mt.floor(mt.log2(len(clubs)))]
+# clubs = rq.get("https://www.premierleague.com/clubs", verify=False)
+# clubs = Soup(clubs.content, "html.parser")
+# clubs = [e.text for e in clubs.select("div.indexSection > div > ul > li > a > div.indexInfo > div.nameContainer > h4")]
+# clubs = clubs[:2 ** mt.floor(mt.log2(len(clubs)))]
+clubs = ['Arsenal',
+         'Aston Villa',
+         'Brighton and Hove Albion',
+         'Burnley',
+         'Chelsea',
+         'Crystal Palace',
+         'Everton',
+         'Fulham',
+         'Leeds United',
+         'Leicester City',
+         'Liverpool',
+         'Manchester City',
+         'Manchester United',
+         'Newcastle United',
+         'Sheffield United',
+         'Southampton']
 
 
 # arrange fixtures
