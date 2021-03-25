@@ -11,33 +11,39 @@ __________.__          _____                 __
 
 
 def menu(basket):
-    inp = ""
-
     while True:
-        print("c - continue")
+        cprint("""
+        p - proceed to checkout
+        c - clear basket
+        """)
         name = input("Enter product name: ")
-        if name == "c":
+        if name == "p":
             break
+        if name == "c":
+            basket = []
+            continue
         price = float(input("Enter price: "))
-        dcount = float(input("Enter discount %: "))
+        discount = float(input("Enter discount %: "))
 
-        basket.append((name, price, dcount))
+        basket.append((name, price, discount))
+
+    return basket
 
 
 def receipt(basket):
-    cprint("""\n\n         Item          Price   Discount  Final Price
-------------------------------------------------------""")
+    cprint("""\n\n         Item            Price     Discount    Final Price
+--------------------------------------------------------""")
     sigma_all = sum([e[1] for e in basket])
     sigma_discount = 0
     for name, price, discount in basket:
         discounted_price = (100 - discount) / 100 * price
-        cprint("|   %16s | Â£%.2f |  %3d" % (name, price, discount) + "%" + f"   |    Â£%.2f    |" % discounted_price)
+        cprint("|   %16s | £%5.2f |  %3d" % (name, price, discount) + "%" + f"   |    £%5.2f    |" % discounted_price)
         sigma_discount += discounted_price
-    cprint("|____________________________________________________|")
+    cprint("|______________________________________________________|")
 
-    cprint("\n\nTotal Price: Â£%.2f" % sigma_all)
-    cprint("Total Discount: Â£%.2f" % (sigma_all - sigma_discount))
-    cprint("Final Price: Â£%.2f" % sigma_discount)
+    cprint("\n\nTotal Price: £%.2f" % sigma_all)
+    cprint("Total Discount: £%.2f" % (sigma_all - sigma_discount))
+    cprint("Final Price: £%.2f" % sigma_discount)
 
     cprint("\nThank you for shopping at " + SHOP_NAME)
 
@@ -46,20 +52,21 @@ last = 0
 gap = 0.5
 
 
-def cprint(string):
+def cprint(msg):
     global last
 
-    now = t.time()
-    if now - last < gap:
-        extra = gap - (now - last)
-        t.sleep(extra)
-    print(string)
+    for s in msg.split("\n"):
+        now = t.time()
+        if now - last < gap:
+            extra = gap - (now - last)
+            t.sleep(extra)
+        last = t.time()
 
-    last = t.time()
+        print(s)
 
 
 def main():
-    print(SHOP_NAME)
+    cprint(SHOP_NAME)
     cprint(dt.today().date().strftime("%d-%m-%Y"))
 
     basket = [
@@ -71,7 +78,7 @@ def main():
         ("Flour", 0.94, 0),
         ("Breakfast cereal", 1.49, 0)
     ]
-    menu(basket)
+    basket = menu(basket)
     receipt(basket)
 
 
