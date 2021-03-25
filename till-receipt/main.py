@@ -32,14 +32,14 @@ def menu(basket):
 
 def receipt(basket):
     cprint("""\n\n         Item            Price     Discount    Final Price
---------------------------------------------------------""")
+------------------------------------------------------------------""")
     sigma_all = sum([e[1] for e in basket])
     sigma_discount = 0
     for name, price, discount in basket:
         discounted_price = (100 - discount) / 100 * price
-        cprint("|   %16s | £%5.2f |  %3d" % (name, price, discount) + "%" + f"   |    £%5.2f    |" % discounted_price)
+        cprint("|   %16s | £%10.2f |  %3d" % (name, price, discount) + "%" + f"   |    £%10.2f    |" % discounted_price)
         sigma_discount += discounted_price
-    cprint("|______________________________________________________|")
+    cprint("|________________________________________________________________|")
 
     cprint("\n\nTotal Price: £%.2f" % sigma_all)
     cprint("Total Discount: £%.2f" % (sigma_all - sigma_discount))
