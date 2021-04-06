@@ -1,0 +1,190 @@
+England
+Scotland
+Northern Ireland
+Wales
+Republic of Ireland
+Arsenal
+Fulham 
+Sheffield United
+Aston Villa
+Leeds United
+Southampton
+Brighton & Hove Albion
+Leicester City
+Tottenham Hotspur
+Burnley
+Liverpool
+West Bromwich Albion
+Chelsea
+Manchester City
+West Ham United
+Crystal Palace
+Manchester United
+Wolverhampton Wanderers
+Everton
+Newcastle United
+Aberdeen
+Hibernian
+Rangers
+Celtic
+Kilmarnock
+Ross County
+Dundee United
+Livingston
+St Johnstone
+Hamilton Academical
+Motherwell
+St Mirren
+AFC Bournemouth
+Derby County
+Queens Park Rangers
+Barnsley
+Huddersfield Town
+Reading
+Birmingham City
+Luton Town
+Rotherham United
+Blackburn Rovers
+Middlesbrough
+Sheffield Wednesday
+Brentford
+Millwall
+Stoke City
+Bristol City
+Norwich City
+Swansea City
+Cardiff City
+Nottingham Forest
+Watford
+Coventry City
+Preston North End
+Wycombe Wanderers
+AFC Wimbledon
+Fleetwood Town
+Peterborough United
+Accrington Stanley
+Gillingham
+Plymouth Argyle
+Blackpool
+Hull City
+Portsmouth
+Bristol Rovers
+Ipswich Town
+Rochdale
+Burton Albion
+Lincoln City
+Shrewsbury Town
+Charlton Athletic
+Milton Keynes Dons
+Sunderland
+Crewe Alexandra
+Northampton Town
+Swindon Town
+Doncaster Rovers
+Oxford United
+Wigan Athletic
+Barrow
+Exeter City
+Oldham Athletic
+Bolton Wanderers
+Forest Green Rovers
+Port Vale
+Bradford City
+Grimsby Town
+Salford City
+Cambridge United
+Harrogate Town
+Scunthorpe United
+Carlisle United
+Leyton Orient
+Southend United
+Cheltenham Town
+Mansfield Town
+Stevenage
+Colchester United
+Morecambe
+Tranmere Rovers
+Crawley Town
+Newport County
+Walsall
+Aldershot Town
+Eastleigh
+Stockport County
+Altrincham
+FC Halifax Town
+Sutton United
+Barnet
+Hartlepool United
+Torquay United
+Boreham Wood
+King's Lynn Town
+Wealdstone
+Bromley
+Macclesfield Town
+Weymouth
+Chesterfield
+Maidenhead United
+Woking
+Dagenham & Redbridge
+Notts County
+Wrexham
+Dover Athletic
+Solihull Moors
+Yeovil Town
+Alloa Athletic
+Dunfermline
+Inverness Caledonian Thistle
+Arbroath
+Greenock Morton
+Queen of the South
+Ayr United
+Heart of Midlothian
+Raith Rovers
+Dundee
+Airdrieonians
+East Fife
+Montrose
+Clyde
+Falkirk
+Partick Thistle
+Cove Rangers
+Forfar Athletic
+Peterhead
+Dumbarton
+Albion Rovers
+Edinburgh City
+Stenhousemuir
+Annan Athletic
+Elgin City
+Stirling Albion
+Brechin City
+Queen's Park
+Stranraer
+Cowdenbeath
+Bordeaux
+Frankfurt
+Napoli
+Lyon
+Hoffenheim
+Roma
+Marseille
+RB Leipzig
+Atletico Madrid
+Monaco
+Schalke
+Barcelona
+PSG
+AC Milan
+Real Betis
+Rennes
+Atalanta
+Real Madrid
+Bayer Leverkusen
+Inter Milan
+Sevilla
+Bayern Munich
+Juventus
+Valencia 
+Borussia Dortmund
+Lazio
+Villarreal
