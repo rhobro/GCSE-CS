@@ -35,7 +35,7 @@ MAIL_TEMPLATE = """
 
 Dear {name},
 
-It has come to our attention that vehicle registration <reg goes here> was parked in our car park for {time} hours. 
+It has come to our attention that vehicle registration {reg} was parked in our car park for {time} hours. 
 There is a £200 fine for all customers that stay longer than 2 hours in our car park. You car arrived at {start} 
 and left at {end} and this is a total time of {time} hours. This has resulted in a fine that you must pay in the next 
 10 working days. 
@@ -65,6 +65,7 @@ def main():
                 f.write(MAIL_TEMPLATE.format(
                     address=c[2],
                     name=c[1],
+                    reg=plate[0],
                     time=round(d, 2),
                     start=plate[1].time(),
                     end=plate[2].time()
