@@ -12,6 +12,7 @@ plate_times = [
     ["YT55 AFS", "12:02:16", "16:35:24"]
 ]
 
+# pre-parse times into datetimes
 for i, p in enumerate(plate_times):
     plate_times[i][1] = dt.strptime(p[1], '%H:%M:%S')
     plate_times[i][2] = dt.strptime(p[2], '%H:%M:%S')
@@ -28,6 +29,7 @@ customers = [
     ["PR15 GHR", "John Williams", "52 Boolean Street, London"]
 ]
 
+# template with labeled fields for string formatting
 MAIL_TEMPLATE = """
 {address}
 
@@ -47,14 +49,18 @@ The Fine Team
 def main():
     # check for overstayers
     cprint("OVERSTAYERS\n")
+
     for plate in plate_times:
-        d = delta(plate[1], plate[2])
+        d = delta(plate[1], plate[2])  # difference between times
+
         if d > 2:
-            c = lookup(plate[0])
+            c = lookup(plate[0])  # find relevant customer
             cprint(f"{c[0]} - {c[1]}: {c[2]}")
 
             # draft letter
             l_name = c[1].lower().replace(" ", "-") + ".txt"
+
+            # save letter with formatted template
             with open(l_name, "w") as f:
                 f.write(MAIL_TEMPLATE.format(
                     address=c[2],
@@ -66,12 +72,24 @@ def main():
 
 
 def lookup(plate):
+    """
+    Look through customer list until number plate matches.
+    :param plate: number plate to search for
+    :return: customer object associated with number plate
+    """
+
     for c in customers:
         if c[0] == plate:
             return c
 
 
-def delta(s, e):
+def delta(s, e) -> float:
+    """
+    :param s: starting time
+    :param e: ending time
+    :return: number of hours difference between s and e
+    """
+
     return (e - s).seconds / 3600
 
 
@@ -80,13 +98,23 @@ gap = 0.5
 
 
 def cprint(msg):
+    """
+    print a statement every "gap" seconds to simulate receipt printing machine
+    :param msg:
+    :return:
+    """
+
     global last
 
+    # print each line of string separately
     for s in msg.split("\n"):
+        # wait until "gap" seconds has elapsed before printing again
         now = t.time()
         if now - last < gap:
             extra = gap - (now - last)
             t.sleep(extra)
+
+        # register new "last"
         last = t.time()
 
         print(s)

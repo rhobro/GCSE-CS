@@ -112,7 +112,7 @@ def main():
     freq = {}
 
     all_sim_results = []
-    for _ in range(10000):
+    for _ in range(1000):
         all_sim_results.append(cup_sim(load_clubs()))
         final = all_sim_results[-1][-1][0]
         wnr = final["hTeam"] if final["hScore"] > final["aScore"] else final["aTeam"]

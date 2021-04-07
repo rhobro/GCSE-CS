@@ -22,6 +22,7 @@ def menu(basket):
         if name == "c":
             basket = []
             continue
+        # get product details
         price = float(input("Enter price: "))
         discount = float(input("Enter discount %: "))
 
@@ -31,6 +32,12 @@ def menu(basket):
 
 
 def receipt(basket):
+    """
+    Formatted printing of receipt with columns and rows
+    :param basket:
+    :return:
+    """
+
     cprint("""\n\n         Item            Price     Discount    Final Price
 ------------------------------------------------------------------""")
     sigma_all = sum([e[1] for e in basket])
@@ -53,6 +60,12 @@ gap = 0.5
 
 
 def cprint(msg):
+    """
+    Custom print function to print one line at a time, to simulate a receipt printing machine
+    :param msg:
+    :return:
+    """
+
     global last
 
     for s in msg.split("\n"):
@@ -69,6 +82,7 @@ def main():
     cprint(SHOP_NAME)
     cprint(dt.today().date().strftime("%d-%m-%Y"))
 
+    # initial basket values
     basket = [
         ("Baked Beans", 0.89, 50),
         ("Loaf of bread", 0.99, 0),
@@ -78,7 +92,9 @@ def main():
         ("Flour", 0.94, 0),
         ("Breakfast cereal", 1.49, 0)
     ]
+    # use menu to allow user to add / remove from basket
     basket = menu(basket)
+    # print receipt at the end of the transaction
     receipt(basket)
 
 
