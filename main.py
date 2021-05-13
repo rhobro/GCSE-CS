@@ -53,8 +53,10 @@ def test(ln, n_qs, stages):
     filtrate = filtrate[:n_qs]  # choose number of questions being tested on
 
     correct_count = 0
+    last_i = 0
 
     for i, w in enumerate(filtrate):
+        last_i = i + 1
         clear()
 
         q = w.q_la if ln else w.q_en  # choose correct question value
@@ -65,15 +67,22 @@ def test(ln, n_qs, stages):
 Question {i + 1} / {len(filtrate)}
 Score    {correct_count} / {i}
 """)
-        inp = input(f"What's '{q}'? : ")
-        if inp in a:
+        inp = input(f"What's '{q}'? (q to quit) : ").strip()
+        if inp == "q":  # quit
+            break
+
+        if inp in a:  # correct
             input("Well done")
             correct_count += 1
 
-        else:
+        else:  # incorrect
             input(f"Nope, it's '{w.get_a_english() if ln else w.get_a_latin()}'")
 
         clear()
+
+    print("""
+Score      : %d / %d
+Percentage : %.2f """ % (correct_count, last_i, correct_count / last_i * 100) + "%")
 
 
 def clear():
