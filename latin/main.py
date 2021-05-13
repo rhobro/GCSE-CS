@@ -25,11 +25,9 @@ def main():
             latin = input("Test from latin to english? (T/f) : ").strip().lower() == "t"
 
             n_qs = ""
-            while n_qs is not int:
-                try:
-                    n_qs = int(input("Number of questions: "))
-                except:
-                    pass
+            while isinstance(n_qs, str):
+                inp = input("Number of questions: ")
+                n_qs = int(inp) if inp.isdigit() else n_qs
 
             stages = [int(s)
                       for s in input("Comma separated list of stages to test on: ").replace(" ", "").split(",")
