@@ -52,9 +52,11 @@ def test(ln, n_qs, stages):
     n_qs = n_qs if 0 < n_qs <= len(filtrate) else len(filtrate)  # logic to choose number of questions
     filtrate = filtrate[:n_qs]  # choose number of questions being tested on
 
+    # fields used to calculate score
     correct_count = 0
     last_i = 0
 
+    # test on each word
     for i, w in enumerate(filtrate):
         last_i = i + 1
         clear()
@@ -66,6 +68,8 @@ def test(ln, n_qs, stages):
         print(f"""
 Question {i + 1} / {len(filtrate)}
 Score    {correct_count} / {i}
+
+{len(filtrate) - i} questions to go!
 """)
         inp = input(f"What's '{q}'? (q to quit) : ").strip()
         if inp == "q":  # quit
