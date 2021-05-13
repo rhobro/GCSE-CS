@@ -25,5 +25,5 @@ for w in vocab:
     }
     new.append(n)
 
-with open("words.txt", "w") as f:
+with open("words.json", "w") as f:
     f.write(json.dumps(new, indent="    "))

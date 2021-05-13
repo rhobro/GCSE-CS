@@ -24,7 +24,7 @@ class Word:
 # instantiate words from json dict
 def parse() -> list:
     intermediate = []
-    with open("words.txt", "r") as f:
+    with open("words.json", "r") as f:
         raw = json.loads(f.read())
 
     for r in raw:
