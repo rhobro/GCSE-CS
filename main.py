@@ -23,11 +23,17 @@ def main():
 
             # input params
             latin = input("Test from latin to english? (T/f) : ").strip().lower() == "t"
-            n_qs = int(input("Number of questions: "))
+
+            n_qs = ""
+            while n_qs is not int:
+                try:
+                    n_qs = int(input("Number of questions: "))
+                except:
+                    pass
+
             stages = [int(s)
                       for s in input("Comma separated list of stages to test on: ").replace(" ", "").split(",")
                       if s.isdigit()]
-
             # test
             test(latin, n_qs, stages)
 
@@ -47,7 +53,7 @@ Stage   : {w.stage}""")
 
 
 def test(ln, n_qs, stages):
-    filtrate = [w for w in words if w.stage in stages]
+    filtrate = [w for w in words if w.stage in stages] if len(stages) > 0 else words
     rand.shuffle(filtrate)
     n_qs = n_qs if 0 < n_qs <= len(filtrate) else len(filtrate)  # logic to choose number of questions
     filtrate = filtrate[:n_qs]  # choose number of questions being tested on
@@ -55,10 +61,11 @@ def test(ln, n_qs, stages):
     # fields used to calculate score
     correct_count = 0
     last_i = 0
+    incorrect_words = []
 
     # test on each word
     for i, w in enumerate(filtrate):
-        last_i = i + 1
+        last_i = i
         clear()
 
         q = w.q_la if ln else w.q_en  # choose correct question value
@@ -81,12 +88,15 @@ Score    {correct_count} / {i}
 
         else:  # incorrect
             input(f"Nope, it's '{w.get_a_english() if ln else w.get_a_latin()}'")
+            incorrect_words.append(w)
 
         clear()
 
     print("""
 Score      : %d / %d
-Percentage : %.2f """ % (correct_count, last_i, correct_count / last_i * 100) + "%")
+Percentage : %.2f """ % (correct_count, 0 if last_i == 0 else last_i + 1, correct_count / (last_i + 1) * 100) + "%")
+
+    input("\nYou got the following wrong:\n - " + "\n - ".join([w.q_la if ln else w.q_en for w in incorrect_words]))
 
 
 def clear():
