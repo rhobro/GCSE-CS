@@ -1,4 +1,34 @@
-vocab = [
+# helper word class
+class Word:
+    def __init__(self, json: dict):
+        self.q_la = json["qLa"]  # question text in latin
+        self.q_en = json["qEn"]  # question text in english
+        self.a_la = json["aLa"]  # answer text in latin
+        self.a_en = json["aEn"]  # answer text in latin
+        self.types = json["type"]
+        self.stage = json["stage"]
+
+    def get_a_latin(self) -> str:
+        return ", ".join(self.a_la)
+
+    def get_a_english(self) -> str:
+        return ", ".join(self.a_en)
+
+    def get_types(self) -> str:
+        return ", ".join(self.types)
+
+
+# instantiate words from json dict
+def parse_raw(json) -> list:
+    words = []
+
+    for r in json:
+        words.append(Word(r))
+
+    return words
+
+
+raw = [
     {
         "qLa": "\u00c4\u0081, ab + abl (also used as prefix with verbs)",
         "aLa": [
@@ -6684,3 +6714,5 @@ vocab = [
         "stage": 0
     }
 ]
+
+words = parse_raw(raw)

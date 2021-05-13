@@ -1,4 +1,5 @@
 import json
+
 from raw_vocab import *
 
 type_map = {
