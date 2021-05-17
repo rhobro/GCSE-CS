@@ -1,4 +1,4 @@
-def validate(t, s):
+def validate(t, s) -> bool:
     # false if length is not same
     if len(s) != len(t):
         return False
